@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="15408997-9ee1-4c8d-ab37-d3398453c3fb" >
+		<http:listener-connection host="${http.host}" port="${http.port}" />
+	</http:listener-config>
+	<global-property doc:name="Global Property" doc:id="e27238d9-1ac4-4ee8-99ab-23348bdfd9de" name="env" value="dev" />
+	<configuration-properties doc:name="Configuration properties" doc:id="9d9f4106-7d95-4b46-91e5-b4cb53a05f9c" file="config-${env}.yaml" />
+	<flow name="hello-worldFlow" doc:id="94cd7e7f-e67d-47b2-900a-fe7f8888cfba" >
+		<http:listener doc:name="Listener" doc:id="eb61dd30-8b05-4b00-8e71-d31134087924" path="/hello" config-ref="HTTP_Listener_config"/>
+		<ee:transform doc:name="Wellcom Message" doc:id="2d84295a-f080-4892-bade-d75cd7ba824a" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+    "message": "Hello! Welcome to Salesforce Mulesoft Integration Project"
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
