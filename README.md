@@ -99,11 +99,3 @@ This error occurs because you are using MuleSoft's Basic Authentication connecti
   3. In the Quick Find box, type **User Interface** and select it.
   4. Check the box for **Enable SOAP API login()**.
   5. *Note:* Users must also have the **Use Any API Auth** permission assigned to their profile or permission set to authenticate successfully.
-
----
-
-## 📂 Navigation
-
-* **Previous Branch:** `0-hello-world`
-* **Next Branch:** `feature/2-oauth2-flow`
-* [Back to Main Repository README](../README.md)
